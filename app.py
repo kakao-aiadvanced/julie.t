@@ -73,7 +73,7 @@ def main():
         question = state["question"]
         documents = state["documents"]
         generation = rag_chain.invoke({"context": documents, "question": question})
-        print("!!!! =>" + "\n".join(d for d in state["source"]))
+        # print("!!!! =>" + "\n".join(d for d in state["source"]))
 
         return {"documents": documents, "question": question, "generation": generation, "source": state["source"]}
 
@@ -131,7 +131,7 @@ def main():
         web_search = state["web_search"]
         state["documents"]
 
-        print("!!!! =>" + "\n".join(d for d in state["source"]))
+        # print("!!!! =>" + "\n".join(d for d in state["source"]))
 
 
         if web_search == "Yes":
@@ -280,14 +280,9 @@ def main():
                     print(f"Finished running: {key}:")
             final_report = value["generation"]
 
-            print(value)
+            # print(value)
             final_report += "\n* 참고 : " + "\n".join(d for d in value["source"])
-            # final_report += "\n* 참고 : " + value["documents"][0].metadata['url']
-
-            # if (value["documents"][0].metadata['url'] != None):
-            #     final_report += "\n* 참고2 : " + value["documents"][0].metadata['url']
-            # if (value["documents"][0]["title"] != None):
-            #     final_report += "\n* 참고2 : " + value["documents"][0]["title"]
+        
 
             st.markdown(final_report)
 
